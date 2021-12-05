@@ -74,7 +74,8 @@ fetchJSON().then(schedules => {
   let weekdays = [sun,mon,tue,wed,thu];
   let weekdays_names = ["sun","mon","tue","wed","thu"];
 
-  document.getElementsByClassName("cd-schedule__event").remove();
+  var old_events = document.getElementsByClassName("cd-schedule__event");
+  for (var i = 0; i < old_events.length; i++) old_events[i].remove();
   //$('li[class="cd-schedule__event"]').remove();
   for (var j = 0; j < weekdays.length; j++) {
     for (var i = 0; i < weekdays[j].length; i++) {
