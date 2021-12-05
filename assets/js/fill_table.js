@@ -74,7 +74,8 @@ fetchJSON().then(schedules => {
   let weekdays = [sun,mon,tue,wed,thu];
   let weekdays_names = ["sun","mon","tue","wed","thu"];
 
-  $('li[class="cd-schedule__event"]').remove();
+  document.getElementsByClassName("cd-schedule__event").remove();
+  //$('li[class="cd-schedule__event"]').remove();
   for (var j = 0; j < weekdays.length; j++) {
     for (var i = 0; i < weekdays[j].length; i++) {
       var start = getNumberToTimestamp(weekdays[j][i]["start_date"]),
