@@ -39,7 +39,7 @@
 		}
 	};
 
-	ScheduleTemplate.prototype.placeEvents = function() {ы
+	ScheduleTemplate.prototype.placeEvents = function() {
 		Util.removeClass(this.element, 'cd-schedule--loading');
 	};
 
