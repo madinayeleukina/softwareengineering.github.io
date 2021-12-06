@@ -1,6 +1,7 @@
 (function() {
 	// Schedule Template - by CodyHouse.co
 	function ScheduleTemplate( element ) {
+		console.log("MAIN");
 		this.element = element;
 		this.timelineItems = this.element.getElementsByClassName('cd-schedule__timeline')[0].getElementsByTagName('li');
 		this.timelineStart = getScheduleTimestamp(this.timelineItems[0].textContent);
