@@ -49,6 +49,14 @@
 		return window.getComputedStyle(this.element, '::before').getPropertyValue('content').replace(/'|"/g, "");
 	};
 
+	function getScheduleTimestamp(time) {
+		//accepts hh:mm format - convert hh:mm to timestamp
+		time = time.replace(/ /g,'');
+		var timeArray = time.split(':');
+		var timeStamp = parseInt(timeArray[0])*60 + parseInt(timeArray[1]);
+		return timeStamp;
+	};
+
 	var scheduleTemplate = document.getElementsByClassName('js-cd-schedule'),	
 		scheduleTemplateArray = [],
 		resizing = false;
