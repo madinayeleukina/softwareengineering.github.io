@@ -4397,3 +4397,7 @@ a {
     margin: 0 auto;
     font-size: 1em;
 }
+
+.hide {
+    display: none;
+}

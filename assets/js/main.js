@@ -39,22 +39,7 @@
 		}
 	};
 
-	ScheduleTemplate.prototype.placeEvents = function() {
-		// on big devices - place events in the template according to their time/day
-		/*var self = this,
-			slotHeight = this.topInfoElement.offsetHeight;
-		console.log(this.singleEvents[3]);
-		for(var i = 0; i < this.singleEvents.length; i++) {
-			var anchor = this.singleEvents[i].getElementsByTagName('a')[0];
-			var start = getScheduleTimestamp(anchor.getAttribute('data-start')),
-				duration = getScheduleTimestamp(anchor.getAttribute('data-end')) - start;
-
-			var eventTop = slotHeight*(start - self.timelineStart)/self.timelineUnitDuration,
-				eventHeight = slotHeight*duration/self.timelineUnitDuration;
-
-			this.singleEvents[i].setAttribute('style', 'top: '+(eventTop-1)+'px; height: '+(eventHeight +1)+'px');
-		}*/
-
+	ScheduleTemplate.prototype.placeEvents = function() {ы
 		Util.removeClass(this.element, 'cd-schedule--loading');
 	};
 
@@ -62,14 +47,6 @@
 		//get MQ value ('desktop' or 'mobile') 
 		var self = this;
 		return window.getComputedStyle(this.element, '::before').getPropertyValue('content').replace(/'|"/g, "");
-	};
-
-	function getScheduleTimestamp(time) {
-		//accepts hh:mm format - convert hh:mm to timestamp
-		time = time.replace(/ /g,'');
-		var timeArray = time.split(':');
-		var timeStamp = parseInt(timeArray[0])*60 + parseInt(timeArray[1]);
-		return timeStamp;
 	};
 
 	var scheduleTemplate = document.getElementsByClassName('js-cd-schedule'),	
@@ -99,34 +76,40 @@
 	}
 }());
 
-async function reload() {
-	var src = "assets/js/fill_table.js";
- 	$('script[src="' + src + '"]').remove();
- 	$('<script>').attr('src', src).appendTo('head');
-
- 	var src = "assets/js/main.js";
- 	$('script[src="' + src + '"]').remove();
- 	$('<script>').attr('src', src).appendTo('head');
+async function hide(id) {
+ 	$(".schedule-"+id).addClass("hide");
 };
 
+async function show(id) {
+ 	$(".schedule-"+id).removeClass("hide");
+};
+
+function scheduleNumber_update() {
+  if (max_len>0) 
+    document.getElementById("schedule-number").innerHTML = "" + (current_schedule+1) + "/" + max_len;
+  else 
+    document.getElementById("schedule-number").innerHTML = "" + current_schedule + "/" + max_len;
+}
+
 prev_schedule = function(event) {
-  // var cur = parseInt(document.getElementById("schedule").dataset.schedule);
-  // document.getElementById("schedule").dataset.schedule = cur-1;
-  current_schedule--;
-  console.log(current_schedule);
-  reload();
+  if (current_schedule>0) {
+  	hide(current_schedule);
+  	current_schedule--;
+  	show(current_schedule);
+  }
+
+  scheduleNumber_update();
 };
 
 next_schedule = function(event) {
-  // var cur = parseInt(document.getElementById("schedule").dataset.schedule);
-  // document.getElementById("schedule").dataset.schedule = cur+1;
-  current_schedule++;
-  console.log(current_schedule);
-  reload();
+  if (current_schedule<max_len-1) {
+  	hide(current_schedule);
+  	current_schedule++;
+  	show(current_schedule);
+  }
+
+  scheduleNumber_update();
 };
 
 document.getElementById("btn-prev").onclick = prev_schedule;
 document.getElementById("btn-next").onclick = next_schedule;
-
-// document.getElementById("btn-prev").addEventListener("click", prev_schedule, false);
-// document.getElementById("btn-next").addEventListener("click", next_schedule, false);
