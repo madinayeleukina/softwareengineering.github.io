@@ -8,7 +8,6 @@
 		this.timelineUnitDuration = getScheduleTimestamp(this.timelineItems[1].textContent) - getScheduleTimestamp(this.timelineItems[0].textContent);
 		this.topInfoElement = this.element.getElementsByClassName('cd-schedule__top-info')[0];
 		this.singleEvents = this.element.getElementsByClassName('cd-schedule__event');
-		console.log(this.singleEvents);
 		this.coverLayer = this.element.getElementsByClassName('cd-schedule__cover-layer')[0];
 		this.initSchedule();
 	};
