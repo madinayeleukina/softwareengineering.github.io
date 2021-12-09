@@ -1,7 +1,7 @@
 "use strict";
 //fetch schedules list
 async function fetchJSON() {
-  const response = await fetch("https://raw.githubusercontent.com/akhatsuleimenov/automated-course-scheduling-system/main/code/backend/json_files/calendar.json");
+  const response = await fetch("https://raw.githubusercontent.com/madinayeleukina/madinayeleukina.github.io/master/code/backend/json_files/calendar.json");
   const schedules = await response.json();
   return schedules;
 }
